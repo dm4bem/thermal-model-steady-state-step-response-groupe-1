@@ -1,4 +1,5 @@
-[![Binder](https://mybinder.org/badge_logo.svg)](https://notebooks.gesis.org/binder/jupyter/user/dm4bem-thermal--sponse-groupe-1-stw6a4f1/lab/workspaces/auto-F/tree/ReportProject_ThermalModel.ipynb)
+You will find in this folder different files. In order to access our report the notebook file is called «ReportProject_ThermalModel.ipynb». In order to run this notebook correctly different files are also needed. You will find in «figures» the different diagrams used and in «codes» the pythons codes created. 
+
+
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/dm4bem/thermal-model-steady-state-step-response-groupe-1/HEAD)
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/dm4bem/thermal-model-steady-state-step-response-groupe-1/ReportProject_ThermalModel.ipynb)
