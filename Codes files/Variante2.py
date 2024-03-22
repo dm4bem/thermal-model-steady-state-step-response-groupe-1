@@ -36,7 +36,7 @@ wall
 # radiative properties
 ε_wLW = 0.85    # long wave emmisivity: wall surface (concrete)
 ε_gLW = 0.90    # long wave emmisivity: glass pyrex
-α_wSW = 0.25    # short wave absortivity: white smooth surface
+α_wSW = 0.6    # short wave absortivity: white smooth surface
 α_gSW = 0.38    # short wave absortivity: reflective blue glass
 τ_gSW = 0.30    # short wave transmitance: reflective blue glass
 
@@ -218,27 +218,28 @@ print([f'{T:.2f} s' for T in -1 / λ])
 print('\n2 x Time constants:') 
 print([f'{T:.2f} s' for T in -2 / λ])
 
-dtmax = 2 * min(-1. / λ)
-print(f'\nMaximum time step: {dtmax:.2f} s = {dtmax / 60:.2f} min')
+dtmax_variante2 = 2 * min(-1. / λ)
+print(f'\nMaximum time step: {dtmax_variante2:.2f} s = {dtmax_variante2 / 60:.2f} min')
 
 # time step
-if dtmax >= 60:
-    dt = np.floor(dtmax / 60) * 60  # round to minutes
-    print(f'dt = {dt} s = {dt / 60:.0f} min')
-elif dtmax >= 10:
-    dt = np.floor(dtmax / 10) * 10  # round to tens of seconds
-    print(f'dt = {dt} s')
+if dtmax_variante2 >= 60:
+    dt_variante2 = np.floor(dtmax_variante2 / 60) * 60  # round to minutes
+    print(f'dt = {dt_variante2} s = {dt_variante2 / 60:.0f} min')
+elif dtmax_variante2 >= 10:
+    dt_variante2 = np.floor(dtmax_variante2 / 10) * 10  # round to tens of seconds
+    print(f'dt = {dt_variante2} s')
 else:
-    dt = np.floor(dtmax)            # round to seconds
-    print(f'dt = {dt} s')
+    dt_variante2 = np.floor(dtmax_variante2)            # round to seconds
+    print(f'dt = {dt_variante2} s')
     
     # settling time
 time_const = np.array([int(x) for x in sorted(-1 / λ)])
 print('4 * Time constants: \n', 4 * time_const, 's \n')
 
-t_settle = 4 * max(-1 / λ)
+t_settle_variante2 = 4 * max(-1 / λ)
 print(f'Settling time: \
-{t_settle:.0f} s = \
-{t_settle / 60:.1f} min = \
-{t_settle / (3600):.2f} h = \
-{t_settle / (3600 * 24):.2f} days')
+{t_settle_variante2:.0f} s = \
+{t_settle_variante2 / 60:.1f} min = \
+{t_settle_variante2 / (3600):.2f} h = \
+{t_settle_variante2 / (3600 * 24):.2f} days')
+

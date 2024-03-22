@@ -19,7 +19,7 @@ concrete = {'Conductivity': 1.400,          # W/(m·K)
 insulation = {'Conductivity': 0.027,        # W/(m·K)
               'Density': 55.0,              # kg/m³
               'Specific heat': 1210,        # J/(kg⋅K)
-              'Width': 0.08,                # m
+              'Width': 0.8,                # m
               'Surface': 5 * l**2}          # m²
 
 glass = {'Conductivity': 1.4,               # W/(m·K)
@@ -218,27 +218,28 @@ print([f'{T:.2f} s' for T in -1 / λ])
 print('\n2 x Time constants:') 
 print([f'{T:.2f} s' for T in -2 / λ])
 
-dtmax = 2 * min(-1. / λ)
-print(f'\nMaximum time step: {dtmax:.2f} s = {dtmax / 60:.2f} min')
+dtmax_variante1 = 2 * min(-1. / λ)
+print(f'\nMaximum time step: {dtmax_variante1:.2f} s = {dtmax_variante1 / 60:.2f} min')
 
 # time step
-if dtmax >= 60:
-    dt = np.floor(dtmax / 60) * 60  # round to minutes
-    print(f'dt = {dt} s = {dt / 60:.0f} min')
-elif dtmax >= 10:
-    dt = np.floor(dtmax / 10) * 10  # round to tens of seconds
-    print(f'dt = {dt} s')
+if dtmax_variante1 >= 60:
+    dt_variante1 = np.floor(dtmax_variante1 / 60) * 60  # round to minutes
+    print(f'dt = {dt_variante1} s = {dt_variante1 / 60:.0f} min')
+elif dtmax_variante1 >= 10:
+    dt_variante1 = np.floor(dtmax_variante1 / 10) * 10  # round to tens of seconds
+    print(f'dt = {dt_variante1} s')
 else:
-    dt = np.floor(dtmax)            # round to seconds
-    print(f'dt = {dt} s')
+    dt_variante1 = np.floor(dtmax_variante1)            # round to seconds
+    print(f'dt = {dt_variante1} s')
     
     # settling time
 time_const = np.array([int(x) for x in sorted(-1 / λ)])
 print('4 * Time constants: \n', 4 * time_const, 's \n')
 
-t_settle = 4 * max(-1 / λ)
+t_settle_variante1 = 4 * max(-1 / λ)
 print(f'Settling time: \
-{t_settle:.0f} s = \
-{t_settle / 60:.1f} min = \
-{t_settle / (3600):.2f} h = \
-{t_settle / (3600 * 24):.2f} days')
+{t_settle_variante1:.0f} s = \
+{t_settle_variante1 / 60:.1f} min = \
+{t_settle_variante1 / (3600):.2f} h = \
+{t_settle_variante1 / (3600 * 24):.2f} days')
+

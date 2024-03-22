@@ -138,11 +138,15 @@ G = np.array(np.hstack(
 pd.DataFrame(G, index=q)
 
 
-neglect_air_glass = False
+neglect_air= False
+neglect_glass=True
 
-if neglect_air_glass:
+if neglect_air:
     C = np.array([0, C['Layer_out'], 0, C['Layer_in'], 0, 0,
-                  0, 0])
+                  0, C['Glass']])
+elif neglect_glass:
+    C = np.array([0, C['Layer_out'], 0, C['Layer_in'], 0, 0,
+                  C['Air'], 0])
 else:
     C = np.array([0, C['Layer_out'], 0, C['Layer_in'], 0, 0,
                   C['Air'], C['Glass']])
@@ -218,27 +222,27 @@ print([f'{T:.2f} s' for T in -1 / λ])
 print('\n2 x Time constants:') 
 print([f'{T:.2f} s' for T in -2 / λ])
 
-dtmax = 2 * min(-1. / λ)
-print(f'\nMaximum time step: {dtmax:.2f} s = {dtmax / 60:.2f} min')
+dtmax_variante4 = 2 * min(-1. / λ)
+print(f'\nMaximum time step: {dtmax_variante4:.2f} s = {dtmax_variante4 / 60:.2f} min')
 
 # time step
-if dtmax >= 60:
-    dt = np.floor(dtmax / 60) * 60  # round to minutes
-    print(f'dt = {dt} s = {dt / 60:.0f} min')
-elif dtmax >= 10:
-    dt = np.floor(dtmax / 10) * 10  # round to tens of seconds
-    print(f'dt = {dt} s')
+if dtmax_variante4 >= 60:
+    dt_variante4 = np.floor(dtmax_variante4 / 60) * 60  # round to minutes
+    print(f'dt = {dt_variante4} s = {dt_variante4 / 60:.0f} min')
+elif dtmax_variante4 >= 10:
+    dt_variante4 = np.floor(dtmax_variante4 / 10) * 10  # round to tens of seconds
+    print(f'dt = {dt_variante4} s')
 else:
-    dt = np.floor(dtmax)            # round to seconds
-    print(f'dt = {dt} s')
+    dt_variante4 = np.floor(dtmax_variante4)            # round to seconds
+    print(f'dt = {dt_variante4} s')
     
     # settling time
 time_const = np.array([int(x) for x in sorted(-1 / λ)])
 print('4 * Time constants: \n', 4 * time_const, 's \n')
 
-t_settle = 4 * max(-1 / λ)
+t_settle_variante4 = 4 * max(-1 / λ)
 print(f'Settling time: \
-{t_settle:.0f} s = \
-{t_settle / 60:.1f} min = \
-{t_settle / (3600):.2f} h = \
-{t_settle / (3600 * 24):.2f} days')
+{t_settle_variante4:.0f} s = \
+{t_settle_variante4 / 60:.1f} min = \
+{t_settle_variante4 / (3600):.2f} h = \
+{t_settle_variante4 / (3600 * 24):.2f} days')
